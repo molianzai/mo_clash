@@ -1,0 +1,26 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+
+proxies:
+  - name: "Trojan-AWS"
+    type: trojan
+    server: 44.245.159.5
+    port: 443
+    password: "bSh896F4hIb+Wwi23aWjF784cCiUJxiRaYMN95zO59s="
+    sni: 44.245.159.5
+    skip-cert-verify: true
+    udp: true
+
+proxy-groups:
+  - name: "Proxy"
+    type: select
+    proxies:
+      - Trojan-AWS
+      - DIRECT
+
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,Proxy
