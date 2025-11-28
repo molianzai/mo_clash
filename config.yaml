@@ -18,9 +18,22 @@ proxy-groups:
   - name: "Proxy"
     type: select
     proxies:
-      - Trojan-AWS
+      - Trojan-AWS-mo
       - DIRECT
 
 rules:
+  # Telegram 走代理
+  - DOMAIN-SUFFIX,telegram.org,Proxy
+  - DOMAIN-SUFFIX,t.me,Proxy
+
+  # 常见国外域名走代理（避免误判）
+  - DOMAIN-SUFFIX,google.com,Proxy
+  - DOMAIN-SUFFIX,facebook.com,Proxy
+  - DOMAIN-SUFFIX,twitter.com,Proxy
+  - DOMAIN-SUFFIX,x.com,Proxy
+
+  # 国内直连
   - GEOIP,CN,DIRECT
+
+  # 其他全部走代理
   - MATCH,Proxy
