@@ -5,7 +5,7 @@ mode: rule
 log-level: info
 
 proxies:
-  - name: "Trojan-AWS"
+  - name: "Trojan-AWS-mo"
     type: trojan
     server: 44.245.159.5
     port: 443
